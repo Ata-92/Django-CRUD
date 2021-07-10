@@ -4,6 +4,7 @@
   <h1>Add Student</h1>
   <form action="" method="POST">
     {% csrf_token %}
-    {{form}}
+    {{form.as_p}}
+    <input type="submit" value="Add">
   </form>
 {% endblock content %}

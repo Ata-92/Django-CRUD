@@ -6,4 +6,7 @@
     <li>{{student}} - {{student.number}}</li>
   {% endfor %}
 </ul>
+  <a href={% url "add" %}>
+    <button>Back to Form</button>
+  </a>
 {% endblock content %}
