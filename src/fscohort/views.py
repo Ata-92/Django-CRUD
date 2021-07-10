@@ -32,4 +32,9 @@ def student_add(request):
     }
     return render(request, "fscohort/student_add.html", context)
 
-# def student_detail(request):
+def student_detail(request, id):
+    student = Student.objects.get(id=id)
+    context = {
+        "student": student
+    }
+    return render(request, "fscohort/student_detail.html", context)
