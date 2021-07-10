@@ -1,6 +1,6 @@
 from django.urls import path
-from fscohort.views import home
+from fscohort.views import home_page
 
 urlpatterns = [
-    path("", home, name="home")
+    path("", home_page, name="home_page")
 ]
