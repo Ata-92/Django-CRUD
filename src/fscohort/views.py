@@ -40,14 +40,15 @@ def student_detail(request, id):
     return render(request, "fscohort/student_detail.html", context)
 
 def student_update(request, id):
-    student = get_object_or_404(Student, id=id)
     # student = Student.objects.get(id=id)
-    form = StudentForm(instance=student)
-    if request.method == "POST":
-        form = StudentForm(request.POST, instance=student)
-        if form.is_valid():
-            form.save()
-            return redirect("list")
+    student = get_object_or_404(Student, id=id)
+    # form = StudentForm(instance=student)
+    # if request.method == "POST":
+    #     form = StudentForm(request.POST, instance=student)
+    form = StudentForm(request.POST or None, instance=student)
+    if form.is_valid():
+        form.save()
+        return redirect("list")
 
     context = {
         "student": student,
