@@ -4,5 +4,6 @@
 {{student.first_name}} - {{student.last_name}} - {{student.number}}
 
 <a href={% url 'update' student.id %}>Update</a>
+<a href={% url 'delete' student.id %}>Delete</a>
 
 {% endblock content %}
