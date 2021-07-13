@@ -3,7 +3,7 @@
 {% block content %}
 <ul>
   {% for student in students %}
-    <li>{{student}} - {{student.number}}</li>
+    <a href={% url "detail" student.id %}><li>{{student}}</li></a>
   {% endfor %}
 </ul>
   <a href={% url "add" %}>
