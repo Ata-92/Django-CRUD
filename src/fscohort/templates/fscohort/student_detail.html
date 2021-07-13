@@ -1,4 +1,8 @@
 {% extends 'fscohort/base.html' %} {% block content %}
 <h1>Student Detail</h1>
+
 {{student.first_name}} - {{student.last_name}} - {{student.number}}
+
+<a href={% url 'update' student.id %}>Update</a>
+
 {% endblock content %}
