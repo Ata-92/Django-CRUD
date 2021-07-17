@@ -7,6 +7,7 @@ from django.views.generic.list import ListView
 from fscohort.forms import StudentForm
 from fscohort.models import Student
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 # Create your views here.
 
@@ -42,6 +43,7 @@ def student_add(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Student successfully created...")
             return redirect("list")
     context = {
         "form": form
@@ -65,7 +67,7 @@ def student_detail(request, id):
 class StudentDetail(DetailView):
     model = Student
     pk_url_kwarg = "id"  #  default  "pk or "slug"
-    # template_name  #  default "app/modelName.lower()_detail.html" = "fscohort/student_detail.html"
+    # template_name  #  default  "app/modelName.lower()_detail.html" = "fscohort/student_detail.html"
 
 def student_update(request, id):
     # student = Student.objects.get(id=id)
