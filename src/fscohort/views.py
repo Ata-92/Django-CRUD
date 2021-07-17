@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 # from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from fscohort.forms import StudentForm
 from fscohort.models import Student
@@ -103,3 +103,7 @@ def student_delete(request, id):
 
     return render(request, "fscohort/student_delete.html", context)
 
+class StudentDelete(DeleteView):
+    model = Student
+    template_name = "fscohort/student_delete.html"  #  default  "app/modelName.lower()_confirm_delete.html" = "fscohort/student_confirm_delete.html"
+    success_url = reverse_lazy("list")
