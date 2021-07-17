@@ -62,6 +62,11 @@ def student_detail(request, id):
     }
     return render(request, "fscohort/student_detail.html", context)
 
+class StudentDetail(DetailView):
+    model = Student
+    pk_url_kwarg = "id"  #  default  "pk or "slug"
+    # template_name  #  default "app/modelName.lower()_detail.html" = "fscohort/student_detail.html"
+
 def student_update(request, id):
     # student = Student.objects.get(id=id)
     student = get_object_or_404(Student, id=id)
