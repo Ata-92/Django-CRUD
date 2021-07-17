@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 # from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from fscohort.forms import StudentForm
 from fscohort.models import Student
@@ -85,6 +85,12 @@ def student_update(request, id):
 
     return render(request, "fscohort/student_update.html", context)
 
+class StudentUpdate(UpdateView):
+    model = Student
+    form_class = StudentForm
+    template_name = "fscohort/student_update.html"  #  default  "app/modelName.lower()_form.html" = "fscohort/student_form.html"
+    success_url = "/list/"  #  reverse_lazy("list")
+
 def student_delete(request, id):
     student = get_object_or_404(Student, id=id)
     if request.method == "POST":
@@ -96,3 +102,4 @@ def student_delete(request, id):
     }
 
     return render(request, "fscohort/student_delete.html", context)
+
