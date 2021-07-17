@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 # from django.http import HttpResponse
 from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
 from fscohort.forms import StudentForm
 from fscohort.models import Student
 # Create your views here.
@@ -22,6 +23,13 @@ def student_list(request):
     }
 
     return render(request, "fscohort/student_list.html", context)
+
+class StudentList(ListView):
+    model = Student
+    # template_name  # default app/student_list.html
+    context_object_name = "students"  # default object_list
+    # ordering = ["num"]
+
 
 def student_add(request):
     form = StudentForm()
