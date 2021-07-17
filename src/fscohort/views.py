@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import HttpResponse
+# from django.http import HttpResponse
+from django.views.generic.base import TemplateView
 from fscohort.forms import StudentForm
 from fscohort.models import Student
 # Create your views here.
@@ -9,6 +10,9 @@ from fscohort.models import Student
 
 def home_page(request):
     return render(request, "fscohort/home.html")
+
+class HomeView(TemplateView):
+    template_name = "fscohort/home.html"
 
 def student_list(request):
     students = Student.objects.all()
