@@ -1,9 +1,13 @@
 from django.shortcuts import get_object_or_404, redirect, render
 # from django.http import HttpResponse
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from fscohort.forms import StudentForm
 from fscohort.models import Student
+from django.urls import reverse_lazy
+
 # Create your views here.
 
 # def home(request):
@@ -26,7 +30,7 @@ def student_list(request):
 
 class StudentList(ListView):
     model = Student
-    # template_name  # default app/student_list.html
+    # template_name  # default  "app/modelName.lower()_list.html" = "fscohort/student_list.html"
     context_object_name = "students"  # default object_list
     # ordering = ["num"]
     paginate_by = 2
@@ -43,6 +47,13 @@ def student_add(request):
         "form": form
     }
     return render(request, "fscohort/student_add.html", context)
+
+class StudentAdd(CreateView):
+    model = Student
+    # fields = ("first_name", "last_name", "number")
+    form_class = StudentForm
+    template_name = "fscohort/student_add.html"  # default  "app/modelName.lower()_form.html" = "fscohort/student_form.html"
+    success_url = reverse_lazy("list") # "/list/"
 
 def student_detail(request, id):
     student = Student.objects.get(id=id)
