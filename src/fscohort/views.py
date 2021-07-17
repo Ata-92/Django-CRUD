@@ -29,7 +29,7 @@ class StudentList(ListView):
     # template_name  # default app/student_list.html
     context_object_name = "students"  # default object_list
     # ordering = ["num"]
-
+    paginate_by = 2
 
 def student_add(request):
     form = StudentForm()
