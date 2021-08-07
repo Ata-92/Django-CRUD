@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my_apps
     "fscohort",
+    "fscohort_api",
     # third_party
-    "crispy_forms"
+    "crispy_forms",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [

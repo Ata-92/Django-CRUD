@@ -22,11 +22,9 @@ class HomeView(TemplateView):
 
 def student_list(request):
     students = Student.objects.all()
-
     context = {
         "students": students
     }
-
     return render(request, "fscohort/student_list.html", context)
 
 class StudentList(ListView):
@@ -66,8 +64,8 @@ def student_detail(request, id):
 
 class StudentDetail(DetailView):
     model = Student
-    pk_url_kwarg = "id"  #  default  "pk or "slug"
     # template_name  #  default  "app/modelName.lower()_detail.html" = "fscohort/student_detail.html"
+    pk_url_kwarg = "id"  #  default  "pk" or "slug"
 
 def student_update(request, id):
     # student = Student.objects.get(id=id)
