@@ -4,10 +4,13 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
+import rest_framework
 from fscohort.forms import StudentForm
 from fscohort.models import Student
 from django.urls import reverse_lazy
 from django.contrib import messages
+from fscohort_api.serializers import StudentDefaultSerializer
+from rest_framework.renderers import JSONRenderer
 
 # Create your views here.
 
@@ -57,6 +60,11 @@ class StudentAdd(CreateView):
 
 def student_detail(request, id):
     student = Student.objects.get(id=id)
+    serializer = StudentDefaultSerializer(student)
+    serializer.data
+    print(serializer.data)
+    json = JSONRenderer().render(serializer.data)
+    print(json)
     context = {
         "student": student
     }
